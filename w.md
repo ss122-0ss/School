@@ -24,7 +24,8 @@ pass:1234
 
 Go to this address:"http://localhost/School/teacher_home.php"
 
-![image-20240401182009483](C:\Users\28162\AppData\Roaming\Typora\typora-user-images\image-20240401182009483.png)
+![图片](https://github.com/ss122-0ss/School/assets/131983607/d3cd4972-b65f-44a7-8be4-6043220f318f)
+
 
 Afterward, click the "Add Profile Details" button, and then interupt and observe the HTTP request in Burp Suite.
 
@@ -38,13 +39,41 @@ payload
 
 
 
-![image-20240401182147659](C:\Users\28162\AppData\Roaming\Typora\typora-user-images\image-20240401182147659.png)
+![图片](https://github.com/ss122-0ss/School/assets/131983607/eb7d2d9e-3804-4a64-875a-88913460abe4)
+
 
 Send the data packet, accept the return data, and you can see that the modification is successful.
 
-![image-20240401182433323](C:\Users\28162\AppData\Roaming\Typora\typora-user-images\image-20240401182433323.png)
+![图片](https://github.com/ss122-0ss/School/assets/131983607/6c6b68e9-b225-4482-9050-904c7dced91a)
+
 
 By accessing the webshell file from the URL the malicious code is executed.
 
-![image-20240401182519669](C:\Users\28162\AppData\Roaming\Typora\typora-user-images\image-20240401182519669.png)
+![图片](https://github.com/ss122-0ss/School/assets/131983607/aef0cf6d-91bf-452c-824d-5ad6ce51aea2)
+
+The code does not perform any verification on the file name, and the code has great security
+
+The code is located in teacher_home.php line 36
+
+```php
+<?php
+						if(isset($_POST["submit"]))
+						{
+							$target="staff/";
+							$target_file=$target.basename($_FILES["img"]["name"]);
+							
+							if(move_uploaded_file($_FILES['img']['tmp_name'],$target_file))
+							{
+								$sql="update staff set PNO='{$_POST["pno"]}',MAIL='{$_POST["mail"]}',PADDR='{$_POST["addr"]}',IMG='{$target_file}'where TID={$_SESSION["TID"]}";
+								$db->query($sql);
+								echo "<div class='success'>Insert Success</div>";
+							}
+							
+						}
+					
+					
+					?>
+					
+```
+
 
