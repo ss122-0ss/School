@@ -1,6 +1,6 @@
-# Simple School Management System Staff avatars exist at any File upload
+# Simple school management system staff avatar upload point exists in any file upload
 
-- **Exploit Title:** Simple School Management System Staff avatars exist at any timeFile upload
+- **Exploit Title:** Simple school management system staff avatar upload point exists in any file upload
 - **Date:** 2024-04-01
 - **Exploit Author:** shuo sheng,jixin zhang
 - **Vendor Homepage:** https://code-projects.org/simple-school-management-in-php-with-source-code/
